@@ -46,6 +46,14 @@ all: build
 build:
 	CGO_ENABLED=0 go build ${LDFLAGS} -o _output/bin/descheduler sigs.k8s.io/descheduler/cmd/descheduler
 
+# docker buildx build \
+# 	--load \
+# 	--platform linux/arm64/v8 \
+# 	--tag lovemew67/descheduler:arm64 .
+
+build.arm64:
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build ${LDFLAGS} -o _output/bin/descheduler sigs.k8s.io/descheduler/cmd/descheduler
+
 dev-image: build
 	docker build -f Dockerfile.dev -t $(IMAGE) .
 

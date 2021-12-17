@@ -15,7 +15,7 @@ FROM golang:1.13.6
 
 WORKDIR /go/src/sigs.k8s.io/descheduler
 COPY . .
-RUN make
+RUN make build.arm64
 
 FROM scratch
 
